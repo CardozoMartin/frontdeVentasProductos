@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Ventas</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./javascript/carrito.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="nav-panel">
+                <button onclick="window.location.href='./pages/formProducto.html'" id="btnAdd" class="add">
+                    📦 Agregar Producto
+                </button>
+                <button onclick="window.location.href='./pages/productos.html'" id="btnView" class="view">
+                    📋 Ver Productos
+                </button>
+                <button onclick="window.location.href='editar-productos.html'" class="edit">
+                    ✏️ Editar Productos
+                </button>
+                <button onclick="window.location.href='eliminar-productos.html'" class="delete">
+                    🗑️ Eliminar Productos
+                </button>
+                <button onclick="window.location.href='./pages/reportes.html'" class="view">
+                    📊 Ventas
+                </button>
+            </div>
+            <div class="panel-content">
+                <button onclick="abrirModalBusqueda()" class="btn-buscar-productos">
+                    🔍 Buscar Productos
+                </button>
+            </div>
+        </div>
+
+        <div class="panel carrito-panel">
+            <h2>Carrito de Compras</h2>
+            <div id="listaCarrito"></div>
+            
+            <button onclick="finalizarCompra()" class="btn-finalizar">
+                Finalizar Compra
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de búsqueda -->
+    <div id="modalBusqueda" class="modal-busqueda">
+        <div class="modal-busqueda-contenido">
+            <div class="modal-header">
+                <h2>Buscar Productos</h2>
+                <button onclick="cerrarModalBusqueda()" class="btn-cerrar">×</button>
+            </div>
+            <div class="busqueda-container">
+                <div class="input-busqueda">
+                    <input type="text" id="busquedaModal" placeholder="Buscar por nombre o código..."
+                        autocomplete="off">
+                </div>
+                <div id="resultadosModal" class="resultados-busqueda"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Agregar esto al HTML existente -->
+    <div id="modalPago" class="modal-pago">
+        <div class="modal-contenido">
+            <button class="btn-cerrar" onclick="cerrarModal()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18"></path>
+                    <path d="M6 6l12 12"></path>
+                </svg>
+            </button>
+           
+            <h2>Finalizar Compra</h2>
+
+            <div class="detalles-pago">
+                <p>Total a pagar: <span id="totalPagar"></span></p>
+                <div>
+                    <label for="montoPagado">Monto recibido:</label>
+                    <input type="number" id="montoPagado" class="input-pago" onchange="calcularCambio()">
+                </div>
+                <p>Cambio a devolver: <span id="cambio">$0.00</span></p>
+            </div>
+
+            <button onclick="procesarPago()" class="btn-imprimir">Procesar Pago</button>
+        </div>
+    </div>
+
+    <!-- Template para el ticket -->
+    <div id="ticket-template" style="display: none;">
+        <div class="ticket">
+            <div class="ticket-header">
+                <h3>COMPROBANTE DE VENTA</h3>
+                <p>Fecha: <span id="ticket-fecha"></span></p>
+                <p>Folio: <span id="ticket-folio"></span></p>
+            </div>
+
+            <div class="ticket-items" id="ticket-items">
+                <!-- Items se agregarán dinámicamente -->
+            </div>
+
+            <div class="ticket-total">
+                <p>Total: <span id="ticket-total"></span></p>
+                <p>Pagado con: <span id="ticket-pagado"></span></p>
+                <p>Cambio: <span id="ticket-cambio"></span></p>
+            </div>
+
+            <div class="ticket-footer">
+                <p>¡Gracias por su compra!</p>
+                <p>Vuelva pronto</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

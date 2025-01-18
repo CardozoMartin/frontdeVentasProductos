@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Ventas</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <link rel="stylesheet" href="../css/reportes.css">
+    <script src="../javascript/reportes.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="panel">
+            <h1>Reporte de Ventas</h1>
+            
+            <div class="filtros-fecha">
+                <div class="input-group">
+                    <label for="fechaInicio">Fecha Inicio:</label>
+                    <input type="date" id="fechaInicio">
+                </div>
+                <div class="input-group">
+                    <label for="fechaFin">Fecha Fin:</label>
+                    <input type="date" id="fechaFin">
+                </div>
+                <button id="btnFiltrar" class="btn-filtrar">Filtrar</button>
+            </div>
+            
+            <div class="reporte-ventas">
+                <div id="ventasPorDia"></div>
+                <div class="total-periodo">
+                    <h3>Total del Período: <span id="totalPeriodo">$0.00</span></h3>
+                </div>
+            </div>
+            
+            <button onclick="window.location.href='../carrito.html'" class="btn-volver">
+                Volver al Inicio
+            </button>
+        </div>
+    </div>
+</body>
+</html>
